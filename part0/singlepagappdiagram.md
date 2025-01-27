@@ -2,33 +2,29 @@ sequenceDiagram
     participant browser
     participant server
     
-    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
-    activate server
-    server-->>browser: status code: 302(URL redirect)
-    deactivate server
-
-    Note right of browser: The browser reloads the page by requesting notes from server
-
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
     activate server
     server-->>browser: HTML document
     deactivate server
 
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa/main.css
     activate server
-    server-->>browser: the CSS file
+    server-->>browser: the css file
     deactivate server   
 
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa/spa.js
     activate server
     server-->>browser: the JavaScript file
     deactivate server
 
     Note right of browser: The browser starts executing the JavaScript code that fetches the JSON from the server
    
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa/data.json
     activate server
     server-->>browser: [{"content":"example123", "date":"2025-01-23"},...]
     deactivate server
+
+     "content": "gg",
+        "date": "2025-01-24T17:44:52.069Z"
    
     Note right of browser: The browser executes the callback function that renders the notes
